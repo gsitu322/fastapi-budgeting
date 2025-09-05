@@ -1,10 +1,16 @@
-from fastapi import APIRouter, status
-from ..models import User
+from fastapi import APIRouter, status, Depends
+from sqlalchemy.orm import Session
+from typing import Annotated
+from ..database import get_db
+from ..schemas import CreateUser
+from ..services.CreateUserService import CreateUserService
 
 router = APIRouter(
     prefix="/users",
     tags=["users"]
 )
+
+db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.get("/", status_code=status.HTTP_200_OK)
 async def get_user():
@@ -15,8 +21,8 @@ async def get_user(id):
     pass
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-async def create_user(user):
-    pass
+async def create_user(db: db_dependency, user: CreateUser):
+    CreateUserService(db).create(user)
 
 @router.put("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_user(user):

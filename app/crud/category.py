@@ -1,4 +1,4 @@
-from ..models import Category
+from app.models import Category
 from sqlalchemy.orm import Session
 
 def get_category(db: Session, id: int):

@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, Field
-from .core.enums import CategoryType
+from app.core.enums import CategoryType
 
 # Category Schemas
 class CategoryCreate(BaseModel):

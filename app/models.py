@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Float, ForeignKey, Enum
-from .database import Base
-from .core.enums import CategoryType
+from app.database import Base
+from app.core.enums import CategoryType
 
 
 class User(Base):

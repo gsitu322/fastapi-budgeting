@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from ..models import Transaction
+from app.models import Transaction
 
 router = APIRouter(
     prefix="/transactions",

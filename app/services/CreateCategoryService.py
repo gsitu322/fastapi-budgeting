@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from ..models import Category
+from app.models import Category
 from app.schemas import CategoryCreate
 
 

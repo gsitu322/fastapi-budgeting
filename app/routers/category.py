@@ -1,10 +1,10 @@
 from typing import Annotated
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ..database import get_db
+from app.database import get_db
 from app.schemas import CategoryCreate, CategoryUpdate
-from ..models import Category
-from ..services.CreateCategoryService import CreateCategoryService
+from app.models import Category
+from app.services.CreateCategoryService import CreateCategoryService
 
 router = APIRouter(
     prefix="/categories",

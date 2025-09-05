@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status, Depends
 from sqlalchemy.orm import Session
 from typing import Annotated
-from ..database import get_db
-from ..schemas import UserCreate
-from ..services.CreateUserService import CreateUserService
+from app.database import get_db
+from app.schemas import UserCreate
+from app.services.CreateUserService import CreateUserService
 
 router = APIRouter(
     prefix="/users",

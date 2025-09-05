@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from app.models import User
-from app.schemas import CreateUser
+from app.schemas import UserCreate
 from passlib.context import CryptContext
 
 class CreateUserService:
@@ -18,7 +18,7 @@ class CreateUserService:
 
         return self
 
-    def create(self, user: CreateUser):
+    def create(self, user: UserCreate):
         self._ensure_user_does_not_exist(user.email)
 
         user_model = User(

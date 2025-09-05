@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database import get_db
-from app.schemas import CreateCategory
+from app.schemas import CategoryCreate, CategoryUpdate
 from ..models import Category
 from ..services.CreateCategoryService import CreateCategoryService
 
@@ -35,12 +35,12 @@ async def get_category(db: db_dependency, id: int):
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-async def create_category(db: db_dependency, category: CreateCategory):
+async def create_category(db: db_dependency, category: CategoryCreate):
     CreateCategoryService(db).create_category(category)
 
 
 @router.put("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-async def update_category(db: db_dependency, id: int, category_form: CreateCategory):
+async def update_category(db: db_dependency, id: int, category_form: CategoryUpdate):
     category = (db.query(Category)
                 .filter(Category.user_id == 1)
                 .filter(Category.id == id)
@@ -49,8 +49,9 @@ async def update_category(db: db_dependency, id: int, category_form: CreateCateg
     if category is None:
         raise HTTPException(status_code=404, detail="Category not found")
 
-    category.name = category_form.name
-    category.type = category_form.type
+    # Update only the fields provided in the form
+    for field, value in category_form.model_dump(mode="json", exclude_unset=True).items():
+        setattr(category, field, value)
 
     db.add(category)
     db.commit()

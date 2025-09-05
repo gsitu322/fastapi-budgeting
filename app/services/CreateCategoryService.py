@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from ..models import Category
-from app.schemas import CreateCategory
+from app.schemas import CategoryCreate
 
 
 class CreateCategoryService:
@@ -23,7 +23,7 @@ class CreateCategoryService:
 
         return self
 
-    def create_category(self, category: CreateCategory) -> Category:
+    def create_category(self, category: CategoryCreate) -> Category:
         self._ensure_category_does_not_exist(category.name)
 
         category_model = Category(**category.model_dump())

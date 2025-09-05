@@ -30,3 +30,5 @@ class CreateUserService:
         )
         self._db.add(user_model)
         self._db.commit()
+
+        # return serialized data?

@@ -6,7 +6,7 @@ router = APIRouter(
     tags=["transactions"]
 )
 
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get("", status_code=status.HTTP_200_OK)
 async def get_transactions(id: int):
     pass
 

@@ -16,7 +16,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 def get_category(db: db_dependency, category_id: int):
     return db.query(Category).filter(Category.id == category_id).first()
 
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get("", status_code=status.HTTP_200_OK)
 async def get_categories(db: db_dependency):
     return db.query(Category).filter(Category.user_id == 1).all()
 

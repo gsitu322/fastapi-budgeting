@@ -18,7 +18,7 @@ async def get_category(id: int):
 async def create_category(category):
     pass
 
-@router.put("/{id}", status_code=status.HTTP_200_OK)
+@router.put("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_category(id: int, category):
     pass
 

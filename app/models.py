@@ -11,8 +11,8 @@ class User(Base):
     first_name = Column(String)
     last_name = Column(String)
     is_active = Column(Boolean)
-    create_dt = Column(DateTime)
-    update_dt = Column(DateTime)
+    create_dt = Column(DateTime, auto_now_add=True)
+    update_dt = Column(DateTime, auto_now=True)
 
 
 class Source(Base):
@@ -21,8 +21,8 @@ class Source(Base):
     name = Column(String)
     description = Column(String)
     user_id = Column(Integer, ForeignKey('users.id'))
-    create_dt = Column(DateTime)
-    update_dt = Column(DateTime)
+    create_dt = Column(DateTime, auto_now_add=True)
+    update_dt = Column(DateTime, auto_now=True)
 
 
 class Category(Base):
@@ -32,8 +32,8 @@ class Category(Base):
     description = Column(String)
     type = Column(Enum(CategoryType), nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'))
-    create_dt = Column(DateTime)
-    update_dt = Column(DateTime)
+    create_dt = Column(DateTime, auto_now_add=True)
+    update_dt = Column(DateTime, auto_now=True)
 
 
 class Transaction(Base):
@@ -45,5 +45,5 @@ class Transaction(Base):
     description = Column(String)
     user_id = Column(Integer, ForeignKey('users.id'))
     notes = Column(String)
-    create_dt = Column(DateTime)
-    update_dt = Column(DateTime)
+    create_dt = Column(DateTime, auto_now_add=True)
+    update_dt = Column(DateTime, auto_now=True)
